@@ -6,7 +6,6 @@ B = torch.tensor([0.0])
 
 def neuron(x: torch.Tensor) -> torch.Tensor:
     """Compute the output of a neuron with predefined weights and bias."""
-
     linear = torch.nn.Linear(len(x), 1)
     # https://discuss.pytorch.org/t/initalizing-weights-and-biases-to-a-specific-vector-in-python/162979/2
     with torch.no_grad():
