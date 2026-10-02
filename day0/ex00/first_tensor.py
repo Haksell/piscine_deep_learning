@@ -11,6 +11,7 @@ def describe(x: torch.Tensor):
 
 
 def main():
+    """Test day0/ex00."""
     describe(torch.tensor([[1, 2, 3], [4, 5, 6]]))
 
 
