@@ -8,3 +8,11 @@ def describe(x: torch.Tensor):
     print(f"Dimensions: {x.ndim}")
     print(f"Dtype: {x.dtype}")
     print(f"Device: {x.device}")
+
+
+def main():
+    describe(torch.tensor([[1, 2, 3], [4, 5, 6]]))
+
+
+if __name__ == "__main__":
+    main()
