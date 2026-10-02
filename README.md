@@ -5,7 +5,7 @@
 - remove useless fields from `pyproject.toml`
 - change 3.14 to 3.12
 - remove `main.py`
-- `uv add torch matplotlib`
+- `uv add torch matplotlib numpy`
 - `uv add --dev flake8 flake8-docstrings`
 - copy `.flake8` from previous day
 

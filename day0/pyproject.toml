@@ -2,7 +2,10 @@
 name = "day0"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = ["matplotlib>=3.11.2", "torch>=2.14.1"]
+dependencies = [
+    "numpy>=2.5.3",
+    "torch>=2.14.1",
+]
 
 [dependency-groups]
 dev = ["flake8>=7.4.1", "flake8-docstrings>=1.7.0"]
