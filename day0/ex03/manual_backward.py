@@ -33,7 +33,7 @@ def main():
     print(f"{x=} {w=} {b=} -> {y=}")
     manual_dy_dw, manual_dy_db = manual_grads(x, w, b)
     autograd_dy_dw, autograd_dy_db = autograd_grads(x, w, b)
-    print(f"Manual: dy/dw={manual_dy_dw} dy/db={manual_dy_db}")
+    print(f"Manual  : dy/dw={manual_dy_dw} dy/db={manual_dy_db}")
     print(f"Autograd: dy/dw={autograd_dy_dw} dy/db={autograd_dy_db}")
     print(f"Match: {manual_dy_dw == autograd_dy_dw and manual_dy_db == autograd_dy_db}")
 
