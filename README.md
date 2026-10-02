@@ -24,4 +24,5 @@
   - ex00 runs tester.py
   - ex01 runs tester.py
   - ex02 runs autograd.py
+- types `torch.Tensor` instead of `"torch.Tensor"`
 - day0/ex01: there should be an `AssertionError` if the shapes are not compatible for the matrix sum too
