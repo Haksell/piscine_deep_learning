@@ -21,4 +21,7 @@
 ## feedback
 
 - create `tester.py` files or have the tests in the main?
+  - ex00 runs tester.py
+  - ex01 runs tester.py
+  - ex02 runs autograd.py
 - day0/ex01: there should be an `AssertionError` if the shapes are not compatible for the matrix sum too
