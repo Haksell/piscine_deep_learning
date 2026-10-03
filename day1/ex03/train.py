@@ -83,7 +83,7 @@ def train(model, loss_fn, optimizer, epochs, x_train, x_val, y_train, y_val):
             train_accuracy = ((train_out > 0) == y_train).sum() / len(y_train)
             val_accuracy = ((val_out > 0) == y_val).sum() / len(y_val)
             print(
-                f"Epoch {epoch:4}",
+                f"Epoch {epoch:3}",
                 f"train loss: {train_loss:.3f} ({100 * train_accuracy:.1f}% accuracy)",
                 f"validation loss: {val_loss:.3f} ({100 * val_accuracy:.1f}% accuracy)",
                 sep=" | ",
