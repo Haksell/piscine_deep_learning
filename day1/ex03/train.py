@@ -69,19 +69,38 @@ def one_step(
     return loss
 
 
-def train(model, loss_fn, optimizer, epochs, x_train, x_val, y_train, y_val):
+def evaluate(
+    model: nn.Module, loss_fn: nn.Module, x_val: torch.Tensor, y_val: torch.Tensor
+):
+    """Evaluate the loss and accuracy of the model on unseen data."""
+    model.eval()
+    val_out = model(x_val)
+    val_loss = loss_fn(val_out, y_val)
+    val_accuracy = ((val_out > 0) == y_val).sum() / len(y_val)
+    return val_loss, val_accuracy
+
+
+def train(
+    model: nn.Module,
+    loss_fn: nn.Module,
+    optimizer: optim.Optimizer,
+    epochs: int,
+    x_train: torch.Tensor,
+    x_val: torch.Tensor,
+    y_train: torch.Tensor,
+    y_val: torch.Tensor,
+):
     """Train a MLP to classify gender based on height, weight and hair length."""
     for epoch in range(1, epochs + 1):
+        model.train()
         train_out = model(x_train)
         train_loss = loss_fn(train_out, y_train)
         optimizer.zero_grad()
         train_loss.backward()
         optimizer.step()
         if epoch == 1 or epoch % 20 == 0 or epoch == epochs:
-            val_out = model(x_val)
-            val_loss = loss_fn(val_out, y_val)
             train_accuracy = ((train_out > 0) == y_train).sum() / len(y_train)
-            val_accuracy = ((val_out > 0) == y_val).sum() / len(y_val)
+            val_loss, val_accuracy = evaluate(model, loss_fn, x_val, y_val)
             print(
                 f"Epoch {epoch:3}",
                 f"train loss: {train_loss:.3f} ({100 * train_accuracy:.1f}% accuracy)",
@@ -98,7 +117,7 @@ def main():
     loss_fn = nn.BCEWithLogitsLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
     train(model, loss_fn, optimizer, 200, x_train, x_val, y_train, y_val)
-    val_accuracy = ((model(x_val) > 0) == y_val).sum() / len(y_val)
+    _, val_accuracy = evaluate(model, loss_fn, x_val, y_val)
     print(f"Validation accuracy: {val_accuracy:.3f}")
 
 
