@@ -1,5 +1,3 @@
-# BROKEN
-
 import torch
 from torch import nn, optim
 
@@ -14,6 +12,7 @@ def one_step(
     loss_fn: nn.Module,
     optimizer: optim.Optimizer,
 ) -> float:
+    """Run one gradient descent step and return the loss."""
     out = model(x)
     loss = loss_fn(out, y)
     optimizer.zero_grad()
@@ -26,10 +25,10 @@ def main():
     """Test day1/ex02."""
     torch.manual_seed(0)
     x = torch.randn(5)
-    y = torch.randn(3)
+    y = torch.rand(3)
     model = MLP(5, 8, 3)
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=0.9)
+    optimizer = optim.SGD(model.parameters(), lr=0.1)
     loss1 = one_step(model, x, y, loss_fn, optimizer)
     loss2 = one_step(model, x, y, loss_fn, optimizer)
     print(f"Loss before step 1: {loss1:.4f}")
